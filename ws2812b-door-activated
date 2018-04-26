@@ -1,0 +1,1366 @@
+[
+    {
+        "id": "77023356.94a63c",
+        "type": "tab",
+        "label": "Floorlight"
+    },
+    {
+        "id": "942e6880.f8b748",
+        "type": "ui_colour_picker",
+        "z": "77023356.94a63c",
+        "name": "Color Picker",
+        "label": "COLOR PICKER",
+        "group": "49a98472.8149a4",
+        "format": "hex",
+        "outformat": "string",
+        "showSwatch": true,
+        "showPicker": true,
+        "showValue": true,
+        "showHue": false,
+        "showAlpha": true,
+        "showLightness": true,
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "topic": "",
+        "x": 210,
+        "y": 1016,
+        "wires": [
+            [
+                "7830e7e8.b9f498"
+            ]
+        ]
+    },
+    {
+        "id": "7830e7e8.b9f498",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "Format Color",
+        "func": "msg.payload = msg.payload + \"00\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 368,
+        "y": 1016,
+        "wires": [
+            [
+                "d3e105fc.a0eb",
+                "dbe2134c.2fbbc8"
+            ]
+        ]
+    },
+    {
+        "id": "3cfaa32.ead70dc",
+        "type": "ui_button",
+        "z": "77023356.94a63c",
+        "name": "LED-Flur",
+        "group": "49a98472.8149a4",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "label": "LED-Flur",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "toggle",
+        "payloadType": "str",
+        "topic": "",
+        "x": 300,
+        "y": 1340,
+        "wires": [
+            [
+                "d3e105fc.a0eb",
+                "ae20b97d.31bc68"
+            ]
+        ]
+    },
+    {
+        "id": "c74cd38a.9f39",
+        "type": "ui_dropdown",
+        "z": "77023356.94a63c",
+        "name": "Select Color",
+        "label": "SELECT COLOR",
+        "place": "",
+        "group": "49a98472.8149a4",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "options": [
+            {
+                "label": "Rot",
+                "value": "#FF000000",
+                "type": "str"
+            },
+            {
+                "label": "Grün",
+                "value": "#00FF0000",
+                "type": "str"
+            },
+            {
+                "label": "Blau",
+                "value": "#0000FF00",
+                "type": "str"
+            },
+            {
+                "label": "KaltWeiss",
+                "value": "#FFFFFF00",
+                "type": "str"
+            },
+            {
+                "label": "Weiss",
+                "value": "#000000FF",
+                "type": "str"
+            },
+            {
+                "label": "Cyan",
+                "value": "#00FFFF00",
+                "type": "str"
+            },
+            {
+                "label": "Purple",
+                "value": "#FF00FF00",
+                "type": "str"
+            },
+            {
+                "label": "Gelb",
+                "value": "#FFFF0000",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 210,
+        "y": 1060,
+        "wires": [
+            [
+                "d3e105fc.a0eb",
+                "dbe2134c.2fbbc8"
+            ]
+        ]
+    },
+    {
+        "id": "d3e105fc.a0eb",
+        "type": "debug",
+        "z": "77023356.94a63c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 614.5,
+        "y": 1108.5,
+        "wires": []
+    },
+    {
+        "id": "dbe2134c.2fbbc8",
+        "type": "mqtt out",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "cmnd/LED/color",
+        "qos": "",
+        "retain": "",
+        "broker": "560d7d19.e69d04",
+        "x": 623,
+        "y": 1017,
+        "wires": []
+    },
+    {
+        "id": "ae20b97d.31bc68",
+        "type": "mqtt out",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "cmnd/LED/POWER",
+        "qos": "",
+        "retain": "",
+        "broker": "560d7d19.e69d04",
+        "x": 650,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "8b4a964d.4de1b",
+        "type": "mqtt in",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "cmnd/bell/POWER",
+        "qos": "0",
+        "broker": "634cbb5f.887d54",
+        "x": 150,
+        "y": 40,
+        "wires": [
+            [
+                "f063e53b.723dc8",
+                "8f737e0d.beb03"
+            ]
+        ]
+    },
+    {
+        "id": "d5ee83e.399f6",
+        "type": "change",
+        "z": "77023356.94a63c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "toggle",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 1480,
+        "wires": [
+            [
+                "ae20b97d.31bc68"
+            ]
+        ]
+    },
+    {
+        "id": "978363f5.ac291",
+        "type": "switch",
+        "z": "77023356.94a63c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ON",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "OFF",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 350,
+        "y": 1460,
+        "wires": [
+            [
+                "d5ee83e.399f6"
+            ],
+            [
+                "ab956db3.7694d"
+            ]
+        ]
+    },
+    {
+        "id": "ab956db3.7694d",
+        "type": "change",
+        "z": "77023356.94a63c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "toggle",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 1440,
+        "wires": [
+            [
+                "ae20b97d.31bc68"
+            ]
+        ]
+    },
+    {
+        "id": "af1da0bc.342c38",
+        "type": "ui_slider",
+        "z": "77023356.94a63c",
+        "name": "Weiß-Helligkeit",
+        "label": "Weiß-Helligkeit",
+        "group": "49a98472.8149a4",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "topic": "",
+        "min": "02",
+        "max": "253",
+        "step": 1,
+        "x": 100,
+        "y": 1400,
+        "wires": [
+            [
+                "78a8b4e0.4aeb14"
+            ]
+        ]
+    },
+    {
+        "id": "d29e5f93.08ff18",
+        "type": "ui_switch",
+        "z": "77023356.94a63c",
+        "name": "",
+        "label": "LED-Flur",
+        "group": "70a2f611.320518",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "",
+        "style": "",
+        "onvalue": "ON",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "OFF",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 300,
+        "y": 1300,
+        "wires": [
+            [
+                "ae20b97d.31bc68"
+            ]
+        ]
+    },
+    {
+        "id": "274bdbd9.5ff49c",
+        "type": "mqtt in",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "stat/LED/POWER",
+        "qos": "0",
+        "broker": "560d7d19.e69d04",
+        "x": 120,
+        "y": 1300,
+        "wires": [
+            [
+                "d29e5f93.08ff18"
+            ]
+        ]
+    },
+    {
+        "id": "b0dd7ec8.19f618",
+        "type": "ui_dropdown",
+        "z": "77023356.94a63c",
+        "name": "",
+        "label": "SELECT Scheme",
+        "place": "",
+        "group": "49a98472.8149a4",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [
+            {
+                "label": "Wakeup",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "label": "Cycle RGB",
+                "value": "2",
+                "type": "str"
+            },
+            {
+                "label": "Cycle RBG",
+                "value": "2",
+                "type": "str"
+            },
+            {
+                "label": "Random Color Cycle",
+                "value": "4",
+                "type": "str"
+            },
+            {
+                "label": "Clock",
+                "value": "5",
+                "type": "str"
+            },
+            {
+                "label": "incandescent",
+                "value": "6",
+                "type": "str"
+            },
+            {
+                "label": "RGB pattern",
+                "value": "7",
+                "type": "str"
+            },
+            {
+                "label": "Christmas",
+                "value": "8",
+                "type": "str"
+            },
+            {
+                "label": "Hanukkah",
+                "value": "9",
+                "type": "str"
+            },
+            {
+                "label": "Kwanzaa",
+                "value": "10",
+                "type": "str"
+            },
+            {
+                "label": "Rainbow",
+                "value": "11",
+                "type": "str"
+            },
+            {
+                "label": "Fire",
+                "value": "12",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 230,
+        "y": 1540,
+        "wires": [
+            [
+                "df9bb7c0.4bab48"
+            ]
+        ]
+    },
+    {
+        "id": "df9bb7c0.4bab48",
+        "type": "mqtt out",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "cmnd/LED/scheme",
+        "qos": "",
+        "retain": "",
+        "broker": "560d7d19.e69d04",
+        "x": 430,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "a8d89b07.2b619",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "Format Helligkeit",
+        "func": "msg.payload = \"#000000\" + msg.payload;\nreturn msg;\n\n\n/*if (msg.payload<=\"9\") \n{msg.payload = \"#0000000\" + msg.payload;}\nelse\n{msg.payload = \"#000000\" + msg.payload;}\nreturn msg;*/",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 1400,
+        "wires": [
+            [
+                "dbe2134c.2fbbc8"
+            ]
+        ]
+    },
+    {
+        "id": "78a8b4e0.4aeb14",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ConvToHex",
+        "func": "msg.payload=decimalToHex(msg.payload);\nreturn msg;\n\nfunction decimalToHex(d, padding) {\n    var hex = Number(d).toString(16);\n    padding = typeof (padding) === \"undefined\" || padding === null ? padding = 2 : padding;\n\n    while (hex.length < padding) {\n        hex = \"0\" + hex;\n    }\n\n    return hex;\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 1400,
+        "wires": [
+            [
+                "a8d89b07.2b619"
+            ]
+        ]
+    },
+    {
+        "id": "44510de1.9ef8c4",
+        "type": "mqtt in",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "stat/LED/RESULT",
+        "qos": "0",
+        "broker": "560d7d19.e69d04",
+        "x": 150,
+        "y": 1160,
+        "wires": [
+            [
+                "a614f31.a69001"
+            ]
+        ]
+    },
+    {
+        "id": "87616fa6.7f16b8",
+        "type": "ui_slider",
+        "z": "77023356.94a63c",
+        "name": "Helligkeit",
+        "label": "Helligkeit",
+        "group": "49a98472.8149a4",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "topic": "",
+        "min": "02",
+        "max": "100",
+        "step": 1,
+        "x": 200,
+        "y": 1100,
+        "wires": [
+            [
+                "377a50bc.7ad1f"
+            ]
+        ]
+    },
+    {
+        "id": "377a50bc.7ad1f",
+        "type": "mqtt out",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "cmnd/LED/dimmer",
+        "qos": "",
+        "retain": "",
+        "broker": "560d7d19.e69d04",
+        "x": 390,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "a775692e.165d5",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractDimmer",
+        "func": "return { payload: msg.payload.Dimmer };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 480,
+        "y": 1160,
+        "wires": [
+            [
+                "d3e105fc.a0eb",
+                "87616fa6.7f16b8"
+            ]
+        ]
+    },
+    {
+        "id": "a614f31.a69001",
+        "type": "json",
+        "z": "77023356.94a63c",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 310,
+        "y": 1160,
+        "wires": [
+            [
+                "d3e105fc.a0eb",
+                "a775692e.165d5",
+                "561388ac.1c6b1"
+            ]
+        ]
+    },
+    {
+        "id": "561388ac.1c6b1",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractColor",
+        "func": "return { payload: msg.payload.Color };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 1200,
+        "wires": [
+            [
+                "942e6880.f8b748"
+            ]
+        ]
+    },
+    {
+        "id": "cb1922c4.674ba8",
+        "type": "inject",
+        "z": "77023356.94a63c",
+        "name": "LED Status abrufen",
+        "topic": "nix",
+        "payload": "",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 370,
+        "y": 120,
+        "wires": [
+            [
+                "111f71e8.55b8ae"
+            ]
+        ]
+    },
+    {
+        "id": "111f71e8.55b8ae",
+        "type": "mqtt out",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "cmnd/LED/STATUS",
+        "qos": "",
+        "retain": "",
+        "broker": "560d7d19.e69d04",
+        "x": 610,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "4367f20d.17a6fc",
+        "type": "inject",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 600,
+        "wires": [
+            [
+                "3bb764ba.21d244"
+            ]
+        ]
+    },
+    {
+        "id": "c0e60f3a.08f978",
+        "type": "mqtt out",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "cmnd/LED/POWER",
+        "qos": "",
+        "retain": "",
+        "broker": "560d7d19.e69d04",
+        "x": 650,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "3bb764ba.21d244",
+        "type": "template",
+        "z": "77023356.94a63c",
+        "name": "LEDWerte",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n \"StatusSTS\": {\n \"POWER\": \"ON\",\n \"Dimmer\": 50,\n \"Color\": \"AA1C1600\",\n \"Scheme\": 0,\n \"Width\": 3,\n \"Fade\": \"OFF\",\n \"Speed\": 1\n }\n}",
+        "output": "json",
+        "x": 260,
+        "y": 600,
+        "wires": [
+            [
+                "34b07285.e600a6",
+                "b8e75e9f.14d22",
+                "311d3d3a.f8c672",
+                "e3825c87.930408",
+                "f347d0b9.6ac98",
+                "28c37e1e.c377f2",
+                "17c00bb0.cc078c",
+                "fccb4b9f.3cab78"
+            ]
+        ]
+    },
+    {
+        "id": "b8e75e9f.14d22",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractPOWER",
+        "func": "return { payload: msg.payload.StatusSTS.POWER };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 600,
+        "wires": [
+            [
+                "34b07285.e600a6",
+                "c0e60f3a.08f978"
+            ]
+        ]
+    },
+    {
+        "id": "34b07285.e600a6",
+        "type": "debug",
+        "z": "77023356.94a63c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "false",
+        "x": 670,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "26a58c5.cf04ff4",
+        "type": "mqtt out",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "cmnd/LED/Backlog",
+        "qos": "",
+        "retain": "",
+        "broker": "560d7d19.e69d04",
+        "x": 450,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "64cbe4e3.f92adc",
+        "type": "inject",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "",
+        "payload": " POWER ON;  COLOR 22551600;",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 290,
+        "y": 180,
+        "wires": [
+            [
+                "26a58c5.cf04ff4"
+            ]
+        ]
+    },
+    {
+        "id": "311d3d3a.f8c672",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractColor",
+        "func": "return { payload: msg.payload.StatusSTS.Color };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 640,
+        "wires": [
+            [
+                "d8d2a751.bd024"
+            ]
+        ]
+    },
+    {
+        "id": "d8d2a751.bd024",
+        "type": "mqtt out",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "cmnd/LED/Color",
+        "qos": "",
+        "retain": "",
+        "broker": "560d7d19.e69d04",
+        "x": 650,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "48f52c66.21eb14",
+        "type": "mqtt out",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "cmnd/LED/Dimmer",
+        "qos": "",
+        "retain": "",
+        "broker": "560d7d19.e69d04",
+        "x": 650,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "d980d8bf.6b321",
+        "type": "mqtt out",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "cmnd/LED/Scheme",
+        "qos": "",
+        "retain": "",
+        "broker": "560d7d19.e69d04",
+        "x": 650,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "35046d93.1b2c8a",
+        "type": "mqtt out",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "cmnd/LED/Width",
+        "qos": "",
+        "retain": "",
+        "broker": "560d7d19.e69d04",
+        "x": 650,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "82685b03.c9842",
+        "type": "mqtt out",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "cmnd/LED/Fade",
+        "qos": "",
+        "retain": "",
+        "broker": "560d7d19.e69d04",
+        "x": 640,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "87116247.19e39",
+        "type": "mqtt out",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "cmnd/LED/Speed",
+        "qos": "",
+        "retain": "",
+        "broker": "560d7d19.e69d04",
+        "x": 650,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "e3825c87.930408",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractDimmer",
+        "func": "return { payload: msg.payload.StatusSTS.Dimmer };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 680,
+        "wires": [
+            [
+                "48f52c66.21eb14"
+            ]
+        ]
+    },
+    {
+        "id": "f347d0b9.6ac98",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractScheme",
+        "func": "return { payload: msg.payload.StatusSTS.Scheme };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 720,
+        "wires": [
+            [
+                "d980d8bf.6b321"
+            ]
+        ]
+    },
+    {
+        "id": "28c37e1e.c377f2",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractWidth",
+        "func": "return { payload: msg.payload.StatusSTS.Width };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 760,
+        "wires": [
+            [
+                "35046d93.1b2c8a"
+            ]
+        ]
+    },
+    {
+        "id": "17c00bb0.cc078c",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractFade",
+        "func": "return { payload: msg.payload.StatusSTS.Fade };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 800,
+        "wires": [
+            [
+                "82685b03.c9842"
+            ]
+        ]
+    },
+    {
+        "id": "fccb4b9f.3cab78",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractSpeed",
+        "func": "return { payload: msg.payload.StatusSTS.Speed };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 840,
+        "wires": [
+            [
+                "87116247.19e39"
+            ]
+        ]
+    },
+    {
+        "id": "a0516aa9.157008",
+        "type": "mqtt in",
+        "z": "77023356.94a63c",
+        "name": "",
+        "topic": "stat/LED/STATUS11",
+        "qos": "0",
+        "broker": "560d7d19.e69d04",
+        "x": 130,
+        "y": 340,
+        "wires": [
+            [
+                "b21215fc.9b229",
+                "11b153d5.2ed71c"
+            ]
+        ]
+    },
+    {
+        "id": "b21215fc.9b229",
+        "type": "json",
+        "z": "77023356.94a63c",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 330,
+        "y": 340,
+        "wires": [
+            [
+                "17659b49.02f515"
+            ]
+        ]
+    },
+    {
+        "id": "17659b49.02f515",
+        "type": "template",
+        "z": "77023356.94a63c",
+        "name": "LEDWerte",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n\"Time\": \"{{payload.StatusSTS.Time}}\",\n\"Uptime\": \"{{payload.StatusSTS.Uptime}}\",\n\"Vcc\": {{payload.StatusSTS.Vcc}},\n\"POWER\": \"{{payload.StatusSTS.POWER}}\",\n\"Dimmer\": {{payload.StatusSTS.Dimmer}},\n\"Color\": \"{{payload.StatusSTS.Color}}\",\n\"HSBColor\": \"{{payload.StatusSTS.HSBColor}}\",\n\"Channel\": \"{{payload.StatusSTS.Channel}}\",\n\"Scheme\": {{payload.StatusSTS.Scheme}},\n\"Width\": {{payload.StatusSTS.Width}},\n\"Fade\": \"{{payload.StatusSTS.Fade}}\",\n\"Speed\": {{payload.StatusSTS.Speed}}\n}\n",
+        "output": "json",
+        "x": 460,
+        "y": 340,
+        "wires": [
+            [
+                "44017e02.b04c78"
+            ]
+        ]
+    },
+    {
+        "id": "11b153d5.2ed71c",
+        "type": "template",
+        "z": "77023356.94a63c",
+        "name": "Bell-Alert",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n \"StatusSTS\": {\n \"Color\": \"33992200\",\n \"Dimmer\": 80\n }\n}",
+        "output": "json",
+        "x": 320,
+        "y": 400,
+        "wires": [
+            [
+                "4ba5cbb7.c75084"
+            ]
+        ]
+    },
+    {
+        "id": "4ba5cbb7.c75084",
+        "type": "delay",
+        "z": "77023356.94a63c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 470,
+        "y": 400,
+        "wires": [
+            [
+                "b8e75e9f.14d22",
+                "311d3d3a.f8c672",
+                "e3825c87.930408",
+                "f347d0b9.6ac98",
+                "28c37e1e.c377f2",
+                "17c00bb0.cc078c",
+                "fccb4b9f.3cab78",
+                "f1777147.997088"
+            ]
+        ]
+    },
+    {
+        "id": "44017e02.b04c78",
+        "type": "delay",
+        "z": "77023356.94a63c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 620,
+        "y": 340,
+        "wires": [
+            [
+                "1d527e64.3ec76a",
+                "339107c7.e15a",
+                "6c9a986c.2da838",
+                "1d362866.041028",
+                "a35cdc02.975f8",
+                "17948f2.c9b29f1",
+                "69822c17.a8d49c"
+            ]
+        ]
+    },
+    {
+        "id": "69822c17.a8d49c",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractSpeed",
+        "func": "return { payload: msg.payload.Speed };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 860,
+        "y": 500,
+        "wires": [
+            [
+                "87116247.19e39"
+            ]
+        ]
+    },
+    {
+        "id": "17948f2.c9b29f1",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractFade",
+        "func": "return { payload: msg.payload.Fade };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 850,
+        "y": 460,
+        "wires": [
+            [
+                "82685b03.c9842"
+            ]
+        ]
+    },
+    {
+        "id": "a35cdc02.975f8",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractWidth",
+        "func": "return { payload: msg.payload.Width };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 850,
+        "y": 420,
+        "wires": [
+            [
+                "35046d93.1b2c8a"
+            ]
+        ]
+    },
+    {
+        "id": "1d362866.041028",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractScheme",
+        "func": "return { payload: msg.payload.Scheme };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 860,
+        "y": 380,
+        "wires": [
+            [
+                "d980d8bf.6b321"
+            ]
+        ]
+    },
+    {
+        "id": "6c9a986c.2da838",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractDimmer",
+        "func": "return { payload: msg.payload.Dimmer };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 860,
+        "y": 340,
+        "wires": [
+            [
+                "48f52c66.21eb14"
+            ]
+        ]
+    },
+    {
+        "id": "339107c7.e15a",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractColor",
+        "func": "return { payload: msg.payload.Color };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 850,
+        "y": 300,
+        "wires": [
+            [
+                "d8d2a751.bd024"
+            ]
+        ]
+    },
+    {
+        "id": "1d527e64.3ec76a",
+        "type": "function",
+        "z": "77023356.94a63c",
+        "name": "ExtractPOWER",
+        "func": "return { payload: msg.payload.POWER };",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 860,
+        "y": 260,
+        "wires": [
+            [
+                "2d37a7b1.24a0f"
+            ]
+        ]
+    },
+    {
+        "id": "f063e53b.723dc8",
+        "type": "change",
+        "z": "77023356.94a63c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 40,
+        "wires": [
+            [
+                "111f71e8.55b8ae"
+            ]
+        ]
+    },
+    {
+        "id": "8f737e0d.beb03",
+        "type": "debug",
+        "z": "77023356.94a63c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "false",
+        "x": 370,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "2d37a7b1.24a0f",
+        "type": "delay",
+        "z": "77023356.94a63c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 890,
+        "y": 200,
+        "wires": [
+            [
+                "c0e60f3a.08f978"
+            ]
+        ]
+    },
+    {
+        "id": "68397620.4d7228",
+        "type": "template",
+        "z": "77023356.94a63c",
+        "name": "LED-Template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n \"StatusSTS\": {\n \"Color\": \"33992200\"\n }\n}\n\n{\n \"StatusSTS\": {\n \"POWER\": \"ON\",\n \"Dimmer\": 50,\n \"Color\": \"33992200\",\n \"Scheme\": 0,\n \"Width\": 3,\n \"Fade\": \"OFF\",\n \"Speed\": 1\n }\n}",
+        "output": "json",
+        "x": 100,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6b7c9410.9c266c",
+        "type": "repeat",
+        "z": "77023356.94a63c",
+        "name": "",
+        "repetitions": "7",
+        "elseOutput": false,
+        "outputs": 1,
+        "x": 280,
+        "y": 520,
+        "wires": [
+            [
+                "11b153d5.2ed71c"
+            ]
+        ]
+    },
+    {
+        "id": "f1777147.997088",
+        "type": "template",
+        "z": "77023356.94a63c",
+        "name": "Bell-Alert",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n \"StatusSTS\": {\n \"Color\": \"33992200\",\n \"Dimmer\": 10\n }\n}",
+        "output": "json",
+        "x": 320,
+        "y": 440,
+        "wires": [
+            [
+                "81c2f7c6.4697e"
+            ]
+        ]
+    },
+    {
+        "id": "81c2f7c6.4697e",
+        "type": "delay",
+        "z": "77023356.94a63c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 470,
+        "y": 440,
+        "wires": [
+            [
+                "6b7c9410.9c266c",
+                "e3825c87.930408"
+            ]
+        ]
+    },
+    {
+        "id": "49a98472.8149a4",
+        "type": "ui_group",
+        "z": "",
+        "name": "Flur",
+        "tab": "38119f37.7951d8",
+        "order": 1,
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "560d7d19.e69d04",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    },
+    {
+        "id": "634cbb5f.887d54",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "nodeRed",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    },
+    {
+        "id": "70a2f611.320518",
+        "type": "ui_group",
+        "z": "",
+        "name": "Group",
+        "tab": "fd89e7b8.06fdb",
+        "order": null,
+        "disp": false,
+        "width": "6"
+    },
+    {
+        "id": "38119f37.7951d8",
+        "type": "ui_tab",
+        "z": "",
+        "name": "LED-String",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "fd89e7b8.06fdb",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Schalter",
+        "icon": "dashboard",
+        "order": 1
+    }
+]
